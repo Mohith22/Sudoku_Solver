@@ -6,18 +6,12 @@ import pytesseract
 from matplotlib import pyplot as plt
 import cv2
 
-cap = cv2.VideoCapture(0)
+#This function reads the text in the image
+num=pytesseract.image_to_string(Image.open('sample.png')) #comment it after running and try below one
+#num=pytesseract.image_to_string(Image.open('sudoku_4.png'))
+print num
 
-while(True):
-	ret, frame = cap.read()
-	gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-	cv2.imshow('frame',gray)
-	cv2.imwrite('sam.jpg',gray)
-	num=pytesseract.image_to_string(Image.open('sam.jpg'))
-	print num
-	if cv2.waitKey(1) & 0xFF == ord('q'):
-		break
-
-cap.release()
+#When you run the below one : It is reading only some numbers and if i just send single grid (any one of 9*9 grids) it is not detecting it at all 
+#So try to find solutions for these two problems
 cv2.waitKey(0)
 cv2.destroyAllWindows()

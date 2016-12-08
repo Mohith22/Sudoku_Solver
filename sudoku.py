@@ -1,6 +1,8 @@
 import pylab as pl 
 import numpy as np
 import math
+import Image
+import pytesseract
 from matplotlib import pyplot as plt
 import cv2
 
@@ -29,19 +31,22 @@ cv2.imshow('EdgeDetected-Sudoku',sudoku_edge)
 sudoku = np.zeros((9,9))
 
 
+
 #Below Code Is To Plot All The Grids Individually
-f,axarr = pl.subplots(9,9)
+
 
 x = 0
 y = 0
-
+'''
 for i in range(9):
 	y=0
 	for j in range(9):
-		axarr[i,j].imshow(sudoku_edge[x:x+33,y:y+33])
+		cv2.imwrite('number.jpg',sudoku_edge[x:x+33,y+33])
+		num = pytesseract.image_to_string(Image.open('number.jpg'))
+		print num
 		y = y+33
 	x=x+33
-pl.show()
+'''
 
 
 cv2.waitKey(0)
